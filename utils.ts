@@ -13,3 +13,4 @@ export const getAllNMWidgets = async (): Promise<IWidget[]> => {
   const filtered = allWidgets.filter(isMNWidget);
   return filtered;
 };
+

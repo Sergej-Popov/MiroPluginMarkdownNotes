@@ -23,6 +23,13 @@ miro.onReady(() => {
     data: {
       widgets: [],
       hidden: false,
+      settings: false,
+      notesContainer: null,
+    },
+    watch: {
+      notesContainer(val: string, old: string) {
+        localStorage.setItem(config.storageKeys.settings.notesContainer, val);
+      },
     },
     computed: {
       mn_doc_render: function () {
@@ -67,6 +74,7 @@ miro.onReady(() => {
     },
     mounted: async function () {
       this.widgets = await getAllNMWidgets();
+      this.notesContainer = localStorage.getItem(config.storageKeys.settings.notesContainer);
 
       miro.addListener("CANVAS_CLICKED", (e: any) => {
         miro.board.ui.closeLeftSidebar();

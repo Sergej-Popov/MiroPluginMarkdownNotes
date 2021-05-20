@@ -24,10 +24,16 @@ miro.onReady(() => {
       editor: null,
       editing: false,
       colors: ["yellow", "green", "red", "blue", "black"],
-      activeColor: null
+      activeColor: null,
+      notesContainer: null,
     },
 
     computed: {
+      showClosingIcon: function () {
+        return ["popup", "fullscreen"].includes(
+          this.notesContainer?.toLowerCase()
+        );
+      },
       mn_doc_render: function () {
         return md.render(this.mn_doc_content);
       },
@@ -36,8 +42,9 @@ miro.onReady(() => {
       toggleEdit: async function () {
         this.editing = !this.editing;
       },
-      close: function (reason: string) {
-        miro.board.ui.closeLeftSidebar();
+      close: async function (reason: string) {
+        await miro.board.ui.closeLeftSidebar();
+        await miro.board.ui.closeModal();
       },
       setColor: async function (color: string) {
         this.widget.url = `${config.host}/img/journal-bookmark-${color}.svg`;
@@ -53,7 +60,7 @@ miro.onReady(() => {
           this.widget.metadata[config.appId] = {
             ...this.widget.metadata[config.appId],
             content: newContent,
-            updated: formatISO(new Date())
+            updated: formatISO(new Date()),
           } as IMeta;
 
           await miro.board.widgets.update(this.widget);
@@ -93,6 +100,10 @@ miro.onReady(() => {
       this.editor.setTheme("ace/theme/github");
       this.editor.session.setMode("ace/mode/markdown");
       this.editor.renderer.setShowGutter(false);
+
+      this.notesContainer = localStorage.getItem(
+        config.storageKeys.settings.notesContainer
+      );
 
       this.editor.on("change", (e: any) => {
         const current = this.editor.getValue();
