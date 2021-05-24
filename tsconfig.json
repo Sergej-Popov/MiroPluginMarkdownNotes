@@ -9,5 +9,9 @@
     "target": "es5",
     "allowJs": true,
     "moduleResolution": "node"
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "vue-global.d.ts"
+  ]
 }
