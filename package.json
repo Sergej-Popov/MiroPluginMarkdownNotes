@@ -5,13 +5,16 @@
   "scripts": {
     "serve": "http-server ./dist -p 9099",
     "host": "ngrok http 9099",
-    "build": "webpack --config webpack.config.js --watch"
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "@types/date-fns": "^2.6.0",
     "@types/file-saver": "^2.0.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.0",
     "date-fns": "^2.21.1",
     "file-saver": "^2.0.5",
+    "html-webpack-plugin": "^5.3.1",
     "http-server": "^0.12.3",
     "ngrok": "^4.0.1",
     "ts-loader": "^9.1.1",
