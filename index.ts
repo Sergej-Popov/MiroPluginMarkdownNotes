@@ -13,12 +13,12 @@ miro.onReady(() => {
       config.storageKeys.settings.notesContainer
     );
 
-    if (notesContainer.toLowerCase() === "sidebar") {
+    if (notesContainer?.toLowerCase() === "sidebar") {
       await miro.board.ui.openLeftSidebar("sidebar.html");
-    } else if (notesContainer.toLowerCase() === "fullscreen") {
+    } else if (notesContainer?.toLowerCase() === "fullscreen") {
       await miro.board.ui.openModal("sidebar.html", {
-        width: 400,
-        height: 400,
+        width: 500,
+        height: 500,
         fullscreen: true,
       });
     } else {
