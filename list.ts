@@ -58,7 +58,6 @@ miro.onReady(() => {
         });
         this.hidden = !this.hidden;
         await miro.board.widgets.update(allWidgets);
-        console.log(allWidgets);
       },
       getLastUpdated: function (widget: IWidget) {
         const meta = widget.metadata[config.appId];

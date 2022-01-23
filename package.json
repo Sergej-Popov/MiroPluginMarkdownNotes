@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "http-server ./dist -p 9099",
     "host": "ngrok http 9099",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js --watch"
   },
   "dependencies": {
     "@types/date-fns": "^2.6.0",

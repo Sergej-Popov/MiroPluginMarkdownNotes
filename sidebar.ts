@@ -26,6 +26,7 @@ miro.onReady(() => {
       colors: ["yellow", "green", "red", "blue", "black"],
       activeColor: null,
       notesContainer: null,
+      widget: null
     },
 
     computed: {
@@ -47,6 +48,10 @@ miro.onReady(() => {
         await miro.board.ui.closeModal();
       },
       setColor: async function (color: string) {
+        if (this.activeColor === color) {
+          console.debug(this.widget);
+        }
+
         this.widget.url = `${config.host}/img/journal-bookmark-${color}.svg`;
         this.widget.metadata[config.appId].color = color;
         this.activeColor = color;
